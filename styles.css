@@ -1,0 +1,167 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: azure;
+    min-width: 580px;
+}
+
+.button{
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+/*For cellphones: */
+@media only screen and (max-width: 400px){
+    .sidebar{
+        display: none;
+    }
+    .header{
+        min-width: 480px;
+    }
+}
+
+.content{
+    display: flex;
+    flex: 1;
+}
+
+.sidebar{
+    padding-left: 15px;
+    width: 30%;
+    background-color: coral;
+    min-height: 100vh;
+}
+
+.content_books{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: beige;
+}
+
+.books{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    margin: 0px 10px;
+}
+
+
+td, th{
+    text-align: center;
+    padding: 15px 10px;
+}
+
+.book{
+    border-bottom: dotted black;
+}
+
+.book_btn {
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    background-color: beige;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 50%;
+    border-radius: 20px;
+    border: solid 4px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    min-width: 300px;
+  }
+
+.modal_content_header{
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.modal_button {
+    border-radius: 7px;
+    width: 70%;
+    height: 30px;
+}
+
+.warning {
+    width: 70%;
+    color: red;
+    font-size: 10px;
+    text-align: start;
+    padding-left: 8px;
+}
+
+fieldset{
+    border-radius: 10px;
+}
+
+  /* The Close and Confirm Button */
+.modal_content_footer {
+    display: flex;
+    gap: 50px;
+}
+.close,.confirm {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+.read, .confirm{
+    color: green;
+}
+.not_read,.close{
+    color: brown;
+}
+
+.title_remove{
+    font-weight: bold;
+    font-size: larger;
+}
+.remove,.title_remove{
+    color: brown;
+    font-weight: bolder;
+}
+
+.close:hover, .close:focus,
+.confirm:hover,.confirm:focus,
+.read:hover,.not_read:hover,
+.remove:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*End modal*/

@@ -38,8 +38,11 @@ header {
     text-align: center;
     font-family: 'Mukta', sans-serif;
 }
-.left ul {
+.left ul,.left p{
     text-align: left;
+}
+.left p {
+    font-size: 14px;
 }
 
 /*Books = main */

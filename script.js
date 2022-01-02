@@ -62,7 +62,7 @@ function Verify(){
     if (author.value == "") warnings[1].innerHTML='*Required';
     else warnings[1].innerHTML='';
 
-    if (read_pages.value>total_pages.value) warnings[2].innerHTML = '*Read pages can not be higher than total pages';
+    if (parseInt(read_pages.value)>parseInt(total_pages.value)) warnings[2].innerHTML = '*Read pages can not be higher than total pages';
     else warnings[2].innerHTML = '';
 
     if (total_pages.value =="") warnings[3].innerHTML = '*Required';

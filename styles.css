@@ -17,6 +17,14 @@ header {
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(0,0,0) 100%);
     padding: 1em 0 1em 0;
     font-family: 'Mukta', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em 3em;
+}
+
+#info_button {
+    display: none;
 }
 
 .main {
@@ -65,6 +73,10 @@ footer {
     font-family: 'Waterfall', cursive;
 }
 
+h5 {
+    font-family: 'Waterfall', cursive;
+}
+
 /*cellphones*/
 @media all and (max-width: 380px){
     table {
@@ -75,10 +87,22 @@ footer {
 @media all and (max-width: 550px){
     /*Remove left content*/
     .left {
-        display: none;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+
+        z-index: 1; /* Sit on top */
+        padding-top: 0px; /* Location of the box */
+        right: 40%;
+        height: 70%;
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
     }
     .main {
         flex-direction: column;
+    }
+    #info_button{
+        display: inline;
     }
     main {
         padding: 5em 0 5em 0;
@@ -117,7 +141,7 @@ tr>td {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 5; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;

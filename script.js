@@ -203,3 +203,17 @@ exampleBook = new Book('Example book 3','Awesome author', 0, 100, false);
 addBookToLibrary(exampleBook);
 
 console.log(myLibrary);
+
+//Info button: 
+var InfoBtn = document.querySelector('#info_button');
+InfoBtn.addEventListener('click', openMenu);
+function openMenu(){
+    let disp = document.querySelector('.left').style.display;
+    if(disp==="block"){
+        document.querySelector('.left').style.display = "none";
+    }
+    else{
+        document.querySelector('.left').style.display = "block";
+    }
+    
+}

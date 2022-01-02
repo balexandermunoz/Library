@@ -1,77 +1,113 @@
-body{
-    margin: 0;
-    padding: 0;
+*{
+    margin: 1.2px;
+    box-sizing: border-box;
+    color: whitesmoke;
+}
+
+body {
+    background: #13141b; /*Op2*/
+    text-align: center;
     display: flex;
     flex-direction: column;
+    
+    height: 100vh;
 }
-.header{
+
+header {
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(0,0,0) 100%);
+    padding: 1em 0 1em 0;
+    font-family: 'Mukta', sans-serif;
+}
+
+.main {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: azure;
-    min-width: 580px;
+    flex: 1;
 }
+
+.left{
+    background: rgba(2,0,36,1);
+    padding: 2em 0 2em 0;
+    flex: 1 1 100px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.left h2 {
+    text-align: center;
+    font-family: 'Mukta', sans-serif;
+}
+.left ul {
+    text-align: left;
+}
+
+/*Books = main */
+main {
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgb(7, 15, 88) 100%);
+    padding: 2em;
+    flex: 3 3 100px;
+}
+
+table {
+    width: 100%;
+    min-width: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+footer {
+    background: #13141b; /*Op2*/
+    font-size: 25px;
+    font-family: 'Waterfall', cursive;
+}
+
+/*cellphones*/
+@media all and (max-width: 380px){
+    table {
+        font-size: small;
+    }
+}
+
+@media all and (max-width: 550px){
+    /*Remove left content*/
+    .left {
+        display: none;
+    }
+    .main {
+        flex-direction: column;
+    }
+    main {
+        padding: 5em 0 5em 0;
+    }
+}
+
+tr {
+    border-bottom: dotted 2px white;
+}
+
+tr>td {
+    padding: 1em 0;
+  }
 
 .button{
     width: 70px;
     height: 40px;
     border-radius: 10px;
+    border: none;
+    background-color: gray;
 }
 
 .button:hover{
     cursor: pointer;
-}
-
-/*For cellphones: */
-@media only screen and (max-width: 400px){
-    .sidebar{
-        display: none;
-    }
-    .header{
-        min-width: 480px;
-    }
-}
-
-.content{
-    display: flex;
-    flex: 1;
-}
-
-.sidebar{
-    padding-left: 15px;
-    width: 30%;
-    background-color: coral;
-    min-height: 100vh;
-}
-
-.content_books{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    background-color: beige;
-}
-
-.books{
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    margin: 0px 10px;
-}
-
-
-td, th{
-    text-align: center;
-    padding: 15px 10px;
-}
-
-.book{
-    border-bottom: dotted black;
-}
+    background-color: rgba(128, 128, 128, 0.671);
+} 
 
 .book_btn {
     text-align: center;
     border-radius: 8px;
     border: none;
-    background-color: beige;
+    background-color: rgb(39, 39, 38);
 }
 
 /* The Modal (background) */
@@ -91,12 +127,12 @@ td, th{
 
   /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #343334;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
-    height: 50%;
+    height: 400px;
     border-radius: 20px;
     border: solid 4px black;
     display: flex;
@@ -104,7 +140,7 @@ td, th{
     justify-content: space-between;
     align-items: center;
 
-    min-width: 300px;
+    min-width: 250px;
   }
 
 .modal_content_header{
@@ -116,6 +152,7 @@ td, th{
     border-radius: 7px;
     width: 70%;
     height: 30px;
+    color: black;
 }
 
 .warning {
@@ -160,8 +197,38 @@ fieldset{
 .confirm:hover,.confirm:focus,
 .read:hover,.not_read:hover,
 .remove:hover {
-  color: #000;
+  color: rgb(202, 202, 202);
   text-decoration: none;
   cursor: pointer;
 }
 /*End modal*/
+
+/* Style all social media icons */
+
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+
+  .fa-github{
+    background: gray;
+    color: white;
+  }

@@ -1,10 +1,10 @@
 const table = document.querySelector('table');        //Select table
-let myLibrary = [];
+let myLibrary = [];     //Array for save books
 
 //The modal
-var modal = document.getElementById("myModal");         // Get the modal
-var addBtn = document.querySelector('#add_button');   // Get the button that opens the modal
-var closeBtn = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+var modal = document.getElementById("myModal");                 // Get the modal
+var addBtn = document.querySelector('#add_button');             // Get the button that opens the modal
+var closeBtn = document.getElementsByClassName("close")[0];     // Get the <span> element that closes the modal
 var confirmBtn = document.getElementsByClassName("confirm")[0]; // Get the <span> element that closes the modal
 
 // When the user clicks the button, open the modal 
@@ -104,11 +104,11 @@ function InsertTable(){
         cell0.innerHTML = i+1;
         cell1.innerHTML = myLibrary[i].title;
         cell2.innerHTML = myLibrary[i].author;
-        cell3.innerHTML = "<input type=\"number\" min=\"0\" max=\"10000\" value=\""+myLibrary[i].readPages+"\" placeholder=\"0\" class=\"book_btn\">";
+        cell3.innerHTML = "<input type=\"number\" min=\"0\" max=\""+parseInt(myLibrary[i].Npages)+"\" value=\""+myLibrary[i].readPages+"\" placeholder=\"0\" class=\"book_btn\">";
         cell4.innerHTML = myLibrary[i].Npages;
         if (myLibrary[i].boolRead){
             cell5.innerHTML = "<div class='read'>Read</div>";
-            cell3.innerHTML = "<input type=\"number\" min=\"0\" max=\"10000\" value=\""+myLibrary[i].Npages+"\" placeholder=\"0\" class=\"book_btn\">";
+            cell3.innerHTML = "<input type=\"number\" min=\"0\" max=\""+parseInt(myLibrary[i].Npages)+"\" value=\""+myLibrary[i].Npages+"\" placeholder=\"0\" class=\"book_btn\">";
         }
         else{ 
             cell5.innerHTML = "<div class='not_read'>Not read</div>";

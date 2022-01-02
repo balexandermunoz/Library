@@ -3,78 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="Images/LibraryIcon3.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Icon library -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet"> <!--Footer font-->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet"> <!--Header font-->
 
     <link rel="stylesheet" type="text/css" ,="" href="styles.css">
     <script type="text/javascript" defer src="script.js"> </script>
     <title>My Library</title>
 </head>
 <body>
-
-    <div class="header"> 
+    <header>
         <h1 id="header_title"> My personal library </h1>
 
         <div class="header_buttons">
             <button class="button" id="add_button">+</button>
             <button class="button" id="header_button">Sign in</button>
         </div>
+    </header>
+
+    <div class="main">
+
+        <aside class="left">
+            <h2>Summary</h2>
+            <ul>
+                <li>Total books:</li>
+                <li>Completed books:</li>
+                <li>Total pages:</li>
+                <li>Completed pages:</li>
+                <li>Read authors:</li>
+              </ul>
+            
+            <p>This project is Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus saepe nemo dolor vel autem consectetur exercitationem, porro dolores incidunt deserunt fugiat odit, maxime optio quia eligendi praesentium totam, illum officia.</p>
+        </aside>
+
+        <!--Main content-->
+        <main>
+        <table class="books">
+            <tr class="book books_title">
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Read pages</th>
+                <th>Total pages</th>
+                <th>Status</th>
+                <th class="title_remove">&#x1F5D1;</th>
+            </tr>
+        </table>
+        </main>
+        <!-- /Main content -->
     </div>
 
-    <div class="content">
+    <footer>
+        <b>Made by: Brayan Muñoz.</b> 
+        <a href="https://www.instagram.com/caos_s.a/" target="_blank" rel="noopener noreferrer" class="fa fa-instagram"></a>
+        <a href="https://www.linkedin.com/in/balexandermunoz/" target="_blank" rel="noopener noreferrer" class="fa fa-linkedin" ></a>
+        <a href="https://github.com/balexandermunoz" target="_blank" rel="noopener noreferrer" class="fa fa-github" ></a>
+        <h5>The Odin Project .</h5> 
+    </footer>
 
-        <div class="sidebar">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, nihil qui aliquid distinctio nostrum sit eveniet, nobis iure esse doloribus similique facilis. Debitis repellendus laboriosam, distinctio aspernatur placeat iure! Nihil.
-        </div>
+     <!-- The Modal -->
+     <div id="myModal" class="modal">
+        <div class="modal-content">
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-            <div class="modal-content">
+            <div class="modal_content_header">
+                Add new book
+            </div>  
 
-                <div class="modal_content_header">
-                    Add new book
-                </div>  
+            <input class="modal_button" id="title" type="text" placeholder="Title">
+            <div class="warning"><!--Js content--></div>
+            <input class="modal_button" id="author" type="text" placeholder="Author">
+            <div class="warning"><!--Js content--></div>
+            <input class="modal_button" id="read_pages" type="number" min="0" placeholder="Read pages (optional)">
+            <div class="warning"><!--Js content--></div>
+            <input class="modal_button" id="total_pages" type="number" min="0" placeholder="Total pages">
+            <div class="warning"><!--Js content--></div>
+            <fieldset>
+                <legend>Have you read it?<abbr title="Required" aria-label="required"></abbr></legend>
+                <input type="radio" id="yes_button" required name="driver" id="r1" value="yes"><label for="r1">Yes</label>
+                <input type="radio" id="no_button"  required name="driver" id="r2" value="no"><label for="r2">No</label>
+                <div class="warning"><!--Js content--></div>
+            </fieldset>
+            
 
-                <input class="modal_button" id="title" type="text" placeholder="Title">
-                <div class="warning"><!--Js content--></div>
-                <input class="modal_button" id="author" type="text" placeholder="Author">
-                <div class="warning"><!--Js content--></div>
-                <input class="modal_button" id="read_pages" type="number" min="0" placeholder="Read pages (optional)">
-                <div class="warning"><!--Js content--></div>
-                <input class="modal_button" id="total_pages" type="number" min="0" placeholder="Total pages">
-                <div class="warning"><!--Js content--></div>
-                <fieldset>
-                    <legend>Have you read it?<abbr title="Required" aria-label="required"></abbr></legend>
-                    <input type="radio" id="yes_button" required name="driver" id="r1" value="yes"><label for="r1">Yes</label>
-                    <input type="radio" id="no_button"  required name="driver" id="r2" value="no"><label for="r2">No</label>
-                    <div class="warning"><!--Js content--></div>
-                </fieldset>
-                
-
-                <div class="modal_content_footer">
-                    <span class="close">&#x2715;</span>
-                    <span class="confirm">&check;</span>
-                </div>
-                <div class="warning"><!--Js content--></div>
+            <div class="modal_content_footer">
+                <span class="close">&#x2715;</span>
+                <span class="confirm">&check;</span>
             </div>
-        
-        </div>
-
-        <div class="content_books">
-            <table class="books">
-                <tr class="book books_title">
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Read pages</th>
-                    <th>Total pages</th>
-                    <th>Status</th>
-                    <th class="title_remove">&#x1F5D1;</th>
-                  </tr>
-            </table>
+            <div class="warning"><!--Js content--></div>
         </div>
     </div>
-
+    <!--End of modal-->
 
 </body>
 </html>

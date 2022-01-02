@@ -45,6 +45,7 @@ function AddBook(){
         return;
     }
     else{
+        if(!isNaN(read_pages.value)) read_pages.value = 0;
         let newBook = new Book(title.value,author.value,parseInt(read_pages.value),parseInt(total_pages.value),yes_button.checked);
         addBookToLibrary(newBook);  //Add the book to array
         console.log(myLibrary);

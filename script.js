@@ -209,11 +209,11 @@ var InfoBtn = document.querySelector('#info_button');
 InfoBtn.addEventListener('click', openMenu);
 function openMenu(){
     let disp = document.querySelector('.left').style.display;
-    if(disp==="block"){
+    if(disp==="flex"){
         document.querySelector('.left').style.display = "none";
     }
     else{
-        document.querySelector('.left').style.display = "block";
+        document.querySelector('.left').style.display = "flex";
     }
     
 }

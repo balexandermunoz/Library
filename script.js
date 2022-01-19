@@ -1,5 +1,45 @@
+//Class version
+
+class Library {
+    constructor(){
+        this.books = [];
+        this.boolRepeated = false;
+    }
+
+    addBookToLibrary(book) {
+        this.books.push(book);  //Add book to array
+        InsertTable();         //Show the table 
+        upSummary();           //Update summary
+      }
+
+    deleteBook(idx){
+        this.books.splice(idx,1); //Remove the book # idx
+    }
+}
+
+class Book {
+    constructor(title,author,readPages,Npages, boolRead){
+        this.title = title;
+        this.author = author;
+        this.readPages = readPages;
+        this.Npages = Npages;
+        this.boolRead = boolRead;
+    }
+
+    info(){
+        if(this.boolRead===false) return (this.title + ' by ' + this.author + ', ' + this.Npages + ' pages,' + ' not read yet.');
+        else return (this.title + ' by ' + this.author + ', ' + this.Npages + ' pages,' + ' already read.');
+    }
+
+    switchRead(){
+        this.boolRead = !this.boolRead      //Swich the bool read state
+        if (this.boolRead) this.readPages = this.Npages;    //If read is true, read pages = total pages
+        else this.readPages = 0;                            //IF change from true to false, read pages = 0
+    }    
+}
+
+let myLibrary = new Library();
 const table = document.querySelector('table');        //Select table
-let myLibrary = [];     //Array for save books
 
 //The modal
 var modal = document.getElementById("myModal");                 // Get the modal
@@ -47,16 +87,9 @@ function AddBook(){
     else{
         if(!isNaN(read_pages.value)) read_pages.value = 0;
         let newBook = new Book(title.value,author.value,parseInt(read_pages.value),parseInt(total_pages.value),yes_button.checked);
-        addBookToLibrary(newBook);  //Add the book to array
-        console.log(myLibrary);
+        myLibrary.addBookToLibrary(newBook);  //Add the book to array
     }
 }
-
-function addBookToLibrary(book) {
-    myLibrary.push(book);  //Add book to array
-    InsertTable();         //Show the table 
-    upSummary();           //Update summary
-  }
 
 //Verify conditions: 
 function Verify(){
@@ -78,12 +111,12 @@ function Verify(){
     else warnings[4].innerHTML = '';
 
     //Repeated books verification: 
-    let repeatedBook = myLibrary.some((element)=>{
+    let repeatedBook = myLibrary.books.some((element)=>{
         if( (title.value === element.title) && author.value === element.author) return true;
         else return false;
     });
 
-    if(repeatedBook && myLibrary.length != 0) warnings[5].innerHTML = '*'+title.value + ' by ' + author.value + ' already in your library!';
+    if(repeatedBook && myLibrary.books.length != 0) warnings[5].innerHTML = '*'+title.value + ' by ' + author.value + ' already in your library!';
     else warnings[5].innerHTML = '';
 
     // If no elements wrong return true, else return false.
@@ -98,7 +131,7 @@ function InsertTable(){
     while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-    for(let i = 0; i< myLibrary.length; i++){
+    for(let i = 0; i< myLibrary.books.length; i++){
         let row = table.insertRow();
         row.className = 'book';
         let cell0 = row.insertCell(0);  //Number of book
@@ -109,34 +142,30 @@ function InsertTable(){
         let cell5 = row.insertCell(5);  //Status
         let cell6 = row.insertCell(6);  //Delete button
         cell0.innerHTML = i+1;
-        cell1.innerHTML = myLibrary[i].title;
-        cell2.innerHTML = myLibrary[i].author;
-        cell3.innerHTML = "<input id=\"arrBtn"+i+"\" type=\"number\" min=\"0\" max=\""+parseInt(myLibrary[i].Npages)+"\" value=\""+parseInt(myLibrary[i].readPages)+"\" placeholder=\"0\" class=\"book_btn\">";
-        cell4.innerHTML = parseInt(myLibrary[i].Npages);
-        if (myLibrary[i].boolRead){
+        cell1.innerHTML = myLibrary.books[i].title;
+        cell2.innerHTML = myLibrary.books[i].author;
+        cell3.innerHTML = "<input id=\"arrBtn"+i+"\" type=\"number\" min=\"0\" max=\""+parseInt(myLibrary.books[i].Npages)+"\" value=\""+parseInt(myLibrary.books[i].readPages)+"\" placeholder=\"0\" class=\"book_btn\">";
+        cell4.innerHTML = myLibrary.books[i].Npages;
+        if (myLibrary.books[i].boolRead){
             cell5.innerHTML = "<div class='read'>Read</div>";
-            myLibrary[i].readPages = parseInt(myLibrary[i].Npages);
-            cell3.innerHTML = "<input id=\"arrBtn"+i+"\" type=\"number\" min=\"0\" max=\""+myLibrary[i].Npages+"\" value=\""+parseInt(myLibrary[i].readPages)+"\" placeholder=\"0\" class=\"book_btn\">";
+            myLibrary.books[i].readPages = myLibrary.books[i].Npages;
+            cell3.innerHTML = "<input id=\"arrBtn"+i+"\" type=\"number\" min=\"0\" max=\""+myLibrary.books[i].Npages+"\" value=\""+parseInt(myLibrary.books[i].readPages)+"\" placeholder=\"0\" class=\"book_btn\">";
         }
         else{ 
-            myLibrary[i].readPages = parseInt(myLibrary[i].readPages);
+            myLibrary.books[i].readPages = myLibrary.books[i].readPages;
             cell5.innerHTML = "<div class='not_read'>Not read</div>";
         }
 
         //Add onchange event to read pages buttons
         cell3.addEventListener('change',e=>{
-            let Idx = cell6.parentElement.firstChild.textContent-1;
-            var arrBtn = document.getElementById('arrBtn'+Idx);
-            myLibrary[Idx].readPages = parseInt(arrBtn.value);
+            var arrBtn = document.getElementById('arrBtn'+i);
+            myLibrary.books[i].readPages = parseInt(arrBtn.value);
             upSummary();
         });
 
         //Add event to switch state (read or not):
         cell5.addEventListener('click',e=>{
-            let Idx = cell6.parentElement.firstChild.textContent-1;
-            myLibrary[Idx].boolRead = !myLibrary[Idx].boolRead;
-            if (myLibrary[Idx].boolRead) myLibrary[Idx].readPages = myLibrary[Idx].Npages;
-            else myLibrary[Idx].readPages = 0;
+            myLibrary.books[i].switchRead();   //Change the state 
             InsertTable();
             upSummary();
         });
@@ -144,9 +173,7 @@ function InsertTable(){
         cell6.innerHTML = '<div class="remove">&#x2715;</div>'; //Remove button
         //Add event to remove books:
         cell6.addEventListener('click',e=>{
-            let delIdx = cell6.parentElement.firstChild.textContent-1;
-            console.log(delIdx);
-            myLibrary.splice(delIdx,1);
+            myLibrary.deleteBook(i);
             InsertTable();      //Display table
             upSummary();        //Update summary
         });
@@ -159,62 +186,60 @@ var SummaryList = document.querySelectorAll('li'); //Select list to give summary
 
 function upSummary(){
     //Give total books:
-    SummaryList[0].innerHTML = 'Total books: '+myLibrary.length;
+    SummaryList[0].innerHTML = 'Total books: '+myLibrary.books.length;
 
     //Read books:
-    let totalReadBooks = myLibrary.filter(item=>{
+    let totalReadBooks = myLibrary.books.filter(item=>{
         return item.boolRead;
     }).length;
     SummaryList[1].innerHTML = 'Completed books: '+totalReadBooks;
 
     //Total pages:
-    let totalPages = myLibrary.map(item=>item.Npages).reduce((prev,next)=>prev+next);
+    let totalPages = myLibrary.books.map(item=>item.Npages).reduce((prev,next)=>prev+next);
     SummaryList[2].innerHTML = 'Total pages: '+totalPages;
 
     //Total read pages:
-    let totalReadPages = myLibrary.map(item=>item.readPages).reduce((prev,next)=>prev+next);
+    let totalReadPages = myLibrary.books.map(item=>item.readPages).reduce((prev,next)=>prev+next);
     SummaryList[3].innerHTML = 'Read pages: '+totalReadPages;
 
     //Total authors:
-    const uniqueAuthors = [...new Set(myLibrary.map(item => item.author))].length;
+    const uniqueAuthors = [...new Set(myLibrary.books.map(item => item.author))].length;
     SummaryList[4].innerHTML = 'Total authors: '+uniqueAuthors;
 }
 
-function Book(title,author,readPages,Npages, boolRead){
-    this.title = title;
-    this.author = author;
-    this.readPages = readPages;
-    this.Npages = Npages;
-    this.boolRead = boolRead;
-}
-//Info in the prototype function: 
-Book.prototype.info = function(){
-    if(this.boolRead===false) return (this.title + ' by ' + this.author + ', ' + this.Npages + ' pages,' + ' not read yet.');
-    else return (this.title + ' by ' + this.author + ', ' + this.Npages + ' pages,' + ' already read.');
-}
-
 let exampleBook = new Book('Example book 1','Awesome author', 0, 100, true);
-addBookToLibrary(exampleBook);
+myLibrary.addBookToLibrary(exampleBook);
 
 
 exampleBook = new Book('Example book 2','Awesome author', 0, 100, true);
-addBookToLibrary(exampleBook);
+myLibrary.addBookToLibrary(exampleBook);
 
 exampleBook = new Book('Example book 3','Awesome author', 0, 100, false);
-addBookToLibrary(exampleBook);
+myLibrary.addBookToLibrary(exampleBook);
 
-console.log(myLibrary);
+console.log(myLibrary.books);
 
 //Info button: 
 var InfoBtn = document.querySelector('#info_button');
+const left = document.querySelector('.left');
+
 InfoBtn.addEventListener('click', openMenu);
 function openMenu(){
-    let disp = document.querySelector('.left').style.display;
-    if(disp==="flex"){
-        document.querySelector('.left').style.display = "none";
+    if(left.style.display==="flex"){
+        left.style.display = "none";
     }
     else{
-        document.querySelector('.left').style.display = "flex";
-    }
-    
+        left.style.display = "flex";
+    }    
 }
+
+//If max-width 550px show the Info by default. Else hide the info:
+var mediaInfo = window.matchMedia("(min-width: 550px)");
+mediaInfo.addListener(()=>{
+    if (mediaInfo.matches) { // If media query matches: width greater than 550px
+        left.style.display = "flex";
+      } 
+    else {                    // width less than 550px
+        left.style.display = "none";
+    }
+})
